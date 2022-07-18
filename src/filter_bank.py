@@ -10,9 +10,9 @@ class FilterBank:
     """Initialize filter bank for interpolating kernel."""
     METHODS = {
         "nearest": (im.nearest_neighbors, (1, 2)),
-        "linear": (imlinear_interpolation, (64, 2)),
-        "cubic": (_cubic_keys, (64, 4)),
-        "spline": (_cubic_spline, (64, 4))
+        "linear": (im.linear_interpolation, (64, 2)),
+        "cubic": (im.cubic_keys, (64, 4)),
+        "spline": (im.cubic_spline, (64, 4))
     }    
     
     def __init__(self, method: str | tuple, n_filters: int=None) -> None:
