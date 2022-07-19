@@ -51,7 +51,18 @@ def spline_prefilter(input_array: np.ndarray, tau: float) -> None:
 @cc.export('compiled_linear_prefilter', '(f8[:],)')
 def linear_prefilter(input_array: np.ndarray) -> None:
     """Apply recursive filter for offset linear interpolation.
-    
+
+    A recursive high-pass filter necessary for shifted linear interpolation. 
+    The filter is applied in-place, make a copy external to this function.
+
+    Args:
+        input_array (ndarray): one-dimensional numpy array
+
+    Returns:
+        None
+
+    Notes:
+        A numba compiled version exists "compiled_linear_prefilter"    
     """
     initialization_length = 18
     tau = 0.21
