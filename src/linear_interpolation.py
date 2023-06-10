@@ -20,14 +20,13 @@ def linear_interpolation(
     x_current_length: int = y_current_values.size - 1
     x_output_length: int = x_output_locations.size    
     
-    # Loop over output location and compute
-    # the nearest input sample location and
-    # take that value
+    # Loop over output location and compute the linear
+    # contribution to the output pixel.
     for ndx in range(x_output_length):
         x_output = x_output_locations[ndx]
         
         input_ndx_float = (x_output - x_current_start) * x_current_inverse_spacing
-        input_ndx = np.int32(input_ndx_float)
+        input_ndx = nb.int32(input_ndx_float)
         
         if (input_ndx >= 0) and (input_ndx < x_current_length):
             sub_pixel_offset = input_ndx_float - nb.float64(input_ndx)
